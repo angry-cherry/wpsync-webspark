@@ -122,25 +122,15 @@ function refresh_data() {
 function order_create( $order ) {
     $url = 'https://my.api.mockaroo.com/products.json?key=89b23a40';
     $ch = curl_init();
-    $test = [
-        (object)[
-            "sku" => "566fe0cb-9261-41f8-95d2-479cb41497ac",
-            "items" => 1
-        ],
-        (object)[
-            "sku" => "83878239-bd0f-419c-9ed0-cbbffb288cb6",
-            "items" => 3,
-        ]
-    ];
 
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($test));
+    curl_setopt( $ch, CURLOPT_URL, $url );
+    curl_setopt( $ch, CURLOPT_POST, 1 );
+    curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $order ) );
 
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 
-    $server_output = curl_exec($ch);
-    curl_close ($ch);
+    $server_output = curl_exec( $ch );
+    curl_close ( $ch );
 
     return $server_output;
 }
